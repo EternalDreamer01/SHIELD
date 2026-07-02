@@ -30,7 +30,7 @@ def runPublish():
         #print(f'edge: {edge}')
         if pubCommunity:
             if pubedge not in pubDevices:
-                pub=Pub(pubedge,topic=f'{pubCommunity}/{pubedge}', broker='172.18.0.2', port=1883, community=pubCommunity)
+                pub=Pub(pubedge,topic=f'{pubCommunity}/{pubedge}', broker='127.0.0.1', port=1883, community=pubCommunity)
                 client = pub.connect_mqtt()
                 pubDevices.add(pubedge)
                 pubs.append([pub,client])

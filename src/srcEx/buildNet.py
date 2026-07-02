@@ -36,7 +36,7 @@ def run():
         #print(f'edge: {edge}')
 
         if subedge not in subDevices:
-            sub=Sub(subedge, broker='172.18.0.2', port=1883, community=subCommunity)
+            sub=Sub(subedge, broker='127.0.0.1', port=1883, community=subCommunity)
             client = sub.connect_mqtt()
             #sub.subscribe(client, '' , sec=True)
             subDevices.add(subedge)
@@ -72,7 +72,6 @@ if __name__ == "__main__":
                     write=True
 
             if write:
-                
                 with open(file_path, mode='w', newline='') as file:
                     writer = csv.DictWriter(file, fieldnames=['id', 'sender', 'count', 'average_response_time'])
                     writer.writeheader()
@@ -96,7 +95,6 @@ if __name__ == "__main__":
                     write=True
             
             if write:
-                
                 with open(file_pathsecurityModule, mode='w', newline='') as file:
                     writer = csv.DictWriter(file, fieldnames=['id', 'sender', 'count', 'average_response_time'])
                     writer.writeheader()

@@ -8,18 +8,18 @@ import threading
 
 names=["c1","c2","m1","m2","s1","s2","s2"]
 topics = ["charging/c1", "charging/c2", "management/m1", "management/m2", "storage/s1", "storage/s2", "storage/topicinside"]
-brokers = ['172.18.0.3', '172.18.0.3', '172.18.0.4', '172.18.0.4', '172.18.0.2', '172.18.0.2', '172.18.0.2']
+brokers = ['127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1']
 port = [1884, 1884, 1885, 1885, 1883, 1883, 1883]
 
 # Security section
 securityTopic=['security/m1','security/m2','security/m1','security/m2','security/m2', 'security/m1', 'security/m1', 'security/m2', 'security/s2', 'security/m1', 'security/m2', 'security/s1']  # receiver (who's gonna unsubscribe)
 secNames=["c2","c2","c1","c1","m1", "m2", "s1", "s1", "s1", "s2", "s2", "s2"]  # senders
-secBrokers = ['172.18.0.3', '172.18.0.3', '172.18.0.3', '172.18.0.3','172.18.0.4', '172.18.0.4','172.18.0.2','172.18.0.2', '172.18.0.2', '172.18.0.2', '172.18.0.2', '172.18.0.2']
+secBrokers = ['127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1','127.0.0.1', '127.0.0.1','127.0.0.1','127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1']
 secPort = [1884, 1884, 1884, 1884, 1885, 1885, 1883, 1883, 1883, 1883, 1883, 1883]
 
 
 class Pub:
-    def __init__(self, name, topic, broker='172.18.0.4', port = 1884, msg="END", community=''):
+    def __init__(self, name, topic, broker='127.0.0.1', port = 1884, msg="END", community=''):
         self.client_id=str(random.randint(0, 1000))
         self.name=name
         self.topic=topic

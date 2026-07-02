@@ -19,11 +19,11 @@ storageTopics = ["storage/topicinside"]
 
 #securityTopics=["security/c1","security/c2","security/m1","security/m2","security/s1","security/s2"]
 
-chargingBroker = '172.18.0.3' # broker IP and port
+chargingBroker = '127.0.0.1' # broker IP and port
 chargingPort = 1884
-managementBroker = '172.18.0.4' # broker IP and port
+managementBroker = '127.0.0.1' # broker IP and port
 managementPort = 1885
-storageBroker = '172.18.0.2' # broker IP and port
+storageBroker = '127.0.0.1' # broker IP and port
 storagePort = 1883
 
 end=False
@@ -37,7 +37,7 @@ def findCommunity(id):
             return device['community']
 
 class Sub:
-    def __init__(self, name, broker='172.18.0.3', port = 1885, community=''):
+    def __init__(self, name, broker='127.0.0.1', port = 1885, community=''):
         self.table={}
         self.tableSec={}
         self.tableSecExp={}
