@@ -47,7 +47,7 @@ if __name__ == "__main__":
     devs=[]
     for d in devices: devs.append(d["id"])
 
-    AG = generate_ag_model(file_network)
+    AG = generate_ag_model(file_network, True)
 
 	######################################################################
 	# 3. Generate paths, analyze them, calculate trust and mitigations,
