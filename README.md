@@ -7,11 +7,11 @@ A prototype implementation of SHIELD using publish/subscribe as a messaging mech
 
 ## Requirements
 
-* Install  the required packages: `pip3 install -r requirements.txt`
+* Python packages: `pip3 install -r requirements.txt`
 
-* **Docker** is required which you can find [here](https://docs.docker.com/engine/install/ubuntu/).
+* [**Docker**](https://docs.docker.com/engine/install/ubuntu/).
 
-* **Mosquitto**: to install Mosquitto, run `sudo apt update -y && sudo apt install -y mosquitto mosquitto-clients`
+* **Mosquitto**: `sudo apt update -y && sudo apt install -y python3-pip mosquitto mosquitto-clients`
 
 We highly suggest using **Ubuntu** to facilitate reproducibility.
 
@@ -19,36 +19,34 @@ We highly suggest using **Ubuntu** to facilitate reproducibility.
 
 ### 1. Docker Network instantiation
 
-1. Disable host mosquito service: `sudo systemctl disable --now mosquitto`
+1. If running locally, disable host mosquitto service: `sudo systemctl disable --now mosquitto`
 1. Make sure port 1883 is free: `sudo lsof -i :1883`, otherwise killing processes is required.
 1. Instantiate the Mosquitto broker:
-```sh
-docker run --rm -it -d --name broker -p 1883:1883 --network bridge -v ./src/srcEx/config/broker.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
-```
+	```sh
+	docker run --rm -it -d --name broker -p 1883:1883 --network bridge -v ./src/srcEx/config/broker.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+	```
 
-4. (Optional) Check if everything worked smoothly: `docker logs broker`, then you should find something like this:
-
-```
-mosquitto version 2.0.18 starting
-Config loaded from /mosquitto/config/mosquitto.conf.
-Opening ipv4 listen socket on port 1883.
-mosquitto version 2.0.18 running
-```
+1. (Optional) Check if everything worked smoothly: `docker logs broker`, then you should find something like this:
+	```
+	mosquitto version 2.0.18 starting
+	Config loaded from /mosquitto/config/mosquitto.conf.
+	Opening ipv4 listen socket on port 1883.
+	mosquitto version 2.0.18 running
+	```
 
 ### 2. Run experiments
 
 1. Launch the following commands in a first terminal (for subscribers):
+	```sh
+	cd src/srcEx
+	python3 buildNet.py
+	# The terminal stays idle waiting for the other terminal to send messages (Subscriber service)
+	```
 
-```sh
-cd src/srcEx
-python3 buildNet.py
-# The terminal stays idle waiting for the other terminal to send messages (Subscriber service)
-```
-
-2. In a second terminal launch `python3 src/main.py` and wait for the experiment to finish. Expect 15mn, you can customize the duration with the `td` variable, expressed in seconds.
+1. In a second terminal launch `python3 src/main.py` and wait for the experiment to finish. Expect 15mn, you can customize the duration with the `td` variable, expressed in seconds.
 	* The message `GRAPHS PRINTED, SUCCESS` indicates the successful completion of the experiment.
 
-2. You can find the assessment results in `experiments/plot` folder.
+1. You can find the assessment results in `experiments/plot` folder.
 
 ## Repository structure
 
