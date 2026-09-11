@@ -4,3 +4,4 @@ networkx==3.3
 pandas==2.2.2
 matplotlib==3.8.4
 nvdlib==0.7.6
+cwe2

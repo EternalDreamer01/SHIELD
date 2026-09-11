@@ -1,3 +1,4 @@
 id,sender,count,average_response_time
-management/2da339a9-dee3-4a0b-bce3-82cead617bcf,vehicle/82d99797-db13-4191-b0d3-af5d66d65be0,2,3
-management/8102c8b5-90bd-4185-9d33-95668d3b5c60,vehicle/82d99797-db13-4191-b0d3-af5d66d65be0,2,25
+vehicle/a0d6428a-18d8-4e9d-9fbf-1d5cdb0dbc2c,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1
+vehicle/cc05a02a-5f64-4991-9107-45a5de037437,vehicle/8b7facec-b904-4145-983d-1a483626c205,2,3
+vehicle/6f01bc53-8725-40b8-a73c-ff74d1d22d7b,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1

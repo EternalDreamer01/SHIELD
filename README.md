@@ -17,6 +17,21 @@ We highly suggest using **Ubuntu** to facilitate reproducibility.
 
 ## Installation Instruction
 
+
+### 0. NIST data download
+__[Also accessible here](https://cwe.mitre.org/data/downloads.html):__
+```sh
+mkdir -p data/NIST/
+cd data/NIST/
+wget -q --show-progress -O software.csv.zip https://cwe.mitre.org/data/csv/699.csv.zip
+wget -q --show-progress -O hardware.csv.zip https://cwe.mitre.org/data/csv/1194.csv.zip
+wget -q --show-progress -O research.csv.zip https://cwe.mitre.org/data/csv/1194.csv.zip
+zcat {software,hardware,research}.csv.zip > cwe.csv
+python3 ./import-cwe-mitigations.py
+```
+
+
+
 ### 1. Docker Network instantiation
 
 1. If running locally, disable host mosquitto service: `sudo systemctl disable --now mosquitto`

@@ -1,7 +1,2 @@
 id,sender,count,average_response_time
-vehicle/0741afe2-0c76-4751-bc5f-0d6d2efc6894,vehicle/d548b1eb-a4dd-4ff4-9ec2-157768815a86,1,1
-vehicle/c3e90bcd-1e84-454a-b945-fe0417951d9e,vehicle/d548b1eb-a4dd-4ff4-9ec2-157768815a86,3,0
-vehicle/5e67cc57-9306-4638-a32e-2ea8242e7ff2,vehicle/d548b1eb-a4dd-4ff4-9ec2-157768815a86,1,1
-vehicle/b77e7897-7396-406e-bd3a-3c327f5b7f1e,vehicle/d548b1eb-a4dd-4ff4-9ec2-157768815a86,1,0
-vehicle/82d99797-db13-4191-b0d3-af5d66d65be0,vehicle/d548b1eb-a4dd-4ff4-9ec2-157768815a86,1,1
-vehicle/9458e644-54cc-4411-879e-8c880b4938ff,vehicle/d548b1eb-a4dd-4ff4-9ec2-157768815a86,1,8
+management/a0838a0a-91f5-4bed-a2d9-afe3c9c22d2b,vehicle/fe16bd22-b073-4e35-a2a9-7fcfee7c050f,2,26

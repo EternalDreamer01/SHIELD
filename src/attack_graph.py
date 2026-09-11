@@ -71,6 +71,7 @@ def retrieve_privileges(vulnID,vulnerabilities):
                 return vuln,priv_required,priv_gained
             else:
                 return vuln,"NONE","NONE"
+    return vulnID,"NONE","NONE"
 
 def generate_ag_model(network_file, writeonfile=False):
     with open(network_file) as nf:

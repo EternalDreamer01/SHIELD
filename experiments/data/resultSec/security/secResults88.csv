@@ -1,3 +1,3 @@
 id,sender,count,average_response_time
-management/2da339a9-dee3-4a0b-bce3-82cead617bcf,management/452a7ba6-e753-4dff-8175-e293672882ee,1,1
-management/8102c8b5-90bd-4185-9d33-95668d3b5c60,management/452a7ba6-e753-4dff-8175-e293672882ee,2,24
+management/5fc9d459-5e10-4671-b845-95a21f6b2ec4,management/cc77e858-ddc7-4f60-af24-934044fa2741,2,2
+charging/8516210e-556a-4885-a980-e7bf9eb12b2f,management/cc77e858-ddc7-4f60-af24-934044fa2741,2,3

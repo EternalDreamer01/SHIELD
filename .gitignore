@@ -166,3 +166,7 @@ cython_debug/
 *.tar.xz
 *.pcap
 *.pdf
+
+experiments/data/
+
+security-review.*

@@ -1,11 +1,3 @@
 id,sender,count,average_response_time
-charging/12c07d87-1d17-41f6-abc2-30ddb900d6f4,management/452a7ba6-e753-4dff-8175-e293672882ee,2,0
-charging/ac9d9662-26b4-4a3a-b680-8647362fec27,management/452a7ba6-e753-4dff-8175-e293672882ee,2,3
-charging/bddcb4cf-b9e5-4de3-8d54-a8fa67198898,management/452a7ba6-e753-4dff-8175-e293672882ee,2,4
-charging/f24c2cea-5436-4610-975f-1e601ecccd73,management/452a7ba6-e753-4dff-8175-e293672882ee,2,6
-charging/6d559b3d-5670-4539-a712-179a900894e2,management/452a7ba6-e753-4dff-8175-e293672882ee,2,8
-charging/8824acec-5931-46d5-8cdc-ba0bd400a979,management/452a7ba6-e753-4dff-8175-e293672882ee,2,9
-charging/90ee78c9-9ecd-4bd1-9a2b-59676adb20aa,management/452a7ba6-e753-4dff-8175-e293672882ee,2,1
-charging/a4c85a07-4728-4d0a-9f86-d66f50ba8e91,management/452a7ba6-e753-4dff-8175-e293672882ee,2,6
-charging/73e30014-e128-4412-bbe2-6176a0cfb8d5,management/452a7ba6-e753-4dff-8175-e293672882ee,4,0
-charging/681e4d3a-f11c-46a4-a7a2-9c70e6e4c989,management/452a7ba6-e753-4dff-8175-e293672882ee,2,11
+management/cc77e858-ddc7-4f60-af24-934044fa2741,management/f9e2bb9e-64ca-4d3e-8229-18c36c4aed93,2,3
+management/5b029320-5cb4-4817-a816-bfb605e429f9,management/f9e2bb9e-64ca-4d3e-8229-18c36c4aed93,2,1

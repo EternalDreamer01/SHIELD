@@ -1,7 +1,11 @@
 id,sender,count,average_response_time
-vehicle/0741afe2-0c76-4751-bc5f-0d6d2efc6894,vehicle/c3e90bcd-1e84-454a-b945-fe0417951d9e,2,0
-vehicle/5e67cc57-9306-4638-a32e-2ea8242e7ff2,vehicle/c3e90bcd-1e84-454a-b945-fe0417951d9e,2,4
-vehicle/b77e7897-7396-406e-bd3a-3c327f5b7f1e,vehicle/c3e90bcd-1e84-454a-b945-fe0417951d9e,2,3
-vehicle/82d99797-db13-4191-b0d3-af5d66d65be0,vehicle/c3e90bcd-1e84-454a-b945-fe0417951d9e,2,8
-vehicle/9458e644-54cc-4411-879e-8c880b4938ff,vehicle/c3e90bcd-1e84-454a-b945-fe0417951d9e,2,0
-vehicle/d548b1eb-a4dd-4ff4-9ec2-157768815a86,vehicle/c3e90bcd-1e84-454a-b945-fe0417951d9e,4,2
+charging/8516210e-556a-4885-a980-e7bf9eb12b2f,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,2
+charging/0e97574e-3a03-49fb-a037-70398f70363e,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,1
+charging/5d4754be-e123-423f-a7d3-25fef2032b9e,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,1
+charging/1902eee1-165f-425f-8f0d-f142da5891dd,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,1
+charging/e5901821-aa8f-4094-bc0b-2fbfd6ee5cda,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,2
+charging/431dba0f-2aca-4877-9e4b-745fb906681c,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,2
+charging/67ba1ef7-cef9-483f-9199-96b1ba74a19f,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,1
+charging/8fdae334-f7ce-4a2c-8ce1-48c9a50221a9,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,2
+charging/b7ca93de-ffa6-4538-8aa8-31c3e936b869,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,1
+charging/dc95c210-f936-4c07-a542-ac6381146c82,management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,1,1

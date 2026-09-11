@@ -1,13 +1,4 @@
 id,sender,count,average_response_time
-m1,c2,2,22
-m1,c1,2,32
-m1,m2,2,11
-m1,s1,2,8
-m1,s2,2,32
-m2,c2,2,21
-m2,c1,2,18
-m2,m1,2,13
-m2,s1,2,33
-m2,s2,2,13
-s1,s2,2,23
-s2,s1,2,20
+management/7d4ff13e-18e9-4095-8d58-6bbe7a56837b,charging/12c07d87-1d17-41f6-abc2-30ddb900d6f4,1,2
+management/50a9c93a-7b10-451e-812d-f4e3634cc47f,charging/12c07d87-1d17-41f6-abc2-30ddb900d6f4,2,0
+management/452a7ba6-e753-4dff-8175-e293672882ee,charging/12c07d87-1d17-41f6-abc2-30ddb900d6f4,1,0
