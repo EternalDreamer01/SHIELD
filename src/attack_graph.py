@@ -1,21 +1,100 @@
 import json
 import networkx as nx
-
 def get_risk_by_vuln(vuln):
-    likelihood=1
-    impact=1
-    
-    if "cvssMetricV2" in vuln["metrics"]:
-        metricV2 = vuln["metrics"]["cvssMetricV2"][0]
-        likelihood=metricV2["exploitabilityScore"]
-        impact=metricV2["impactScore"]
-    
-    if "cvssMetricV30" in vuln["metrics"] or "cvssMetricV31" in vuln["metrics"]:
-        if "cvssMetricV30" in vuln["metrics"]: metricV3 = vuln["metrics"]["cvssMetricV30"][0]
-        else: metricV3 = vuln["metrics"]["cvssMetricV31"][0]
-        likelihood=metricV3["exploitabilityScore"]
-        impact=metricV3["impactScore"]
-    return likelihood,impact
+    """
+    Supports both:
+
+    NVD 2.0:
+        vuln["cve"]["metrics"]
+
+    NVD 1.1:
+        vuln["impact"]
+    """
+
+    likelihood = 1
+    impact = 1
+
+    # NVD 2.0 stores the CVE data inside "cve".
+    # NVD 1.1 stores it directly in the item.
+    cve = vuln.get("cve", vuln)
+
+    # ---------------------------------------------------------
+    # NVD 2.0
+    # ---------------------------------------------------------
+    metrics = cve.get("metrics", {})
+
+    # Keep CVSS v2 as the default
+    if "cvssMetricV2" in metrics:
+        metric_v2 = metrics["cvssMetricV2"][0]
+
+        likelihood = metric_v2.get(
+            "exploitabilityScore",
+            likelihood,
+        )
+        impact = metric_v2.get(
+            "impactScore",
+            impact,
+        )
+
+    # Prefer CVSS v3.1 over v3.0 and v2
+    if "cvssMetricV30" in metrics:
+        metric_v3 = metrics["cvssMetricV30"][0]
+
+        likelihood = metric_v3.get(
+            "exploitabilityScore",
+            likelihood,
+        )
+        impact = metric_v3.get(
+            "impactScore",
+            impact,
+        )
+
+    if "cvssMetricV31" in metrics:
+        metric_v3 = metrics["cvssMetricV31"][0]
+
+        likelihood = metric_v3.get(
+            "exploitabilityScore",
+            likelihood,
+        )
+        impact = metric_v3.get(
+            "impactScore",
+            impact,
+        )
+
+    # ---------------------------------------------------------
+    # NVD 1.1
+    # ---------------------------------------------------------
+    legacy_impact = vuln.get("impact", {})
+
+    # CVSS v2
+    if "baseMetricV2" in legacy_impact:
+        metric_v2 = legacy_impact["baseMetricV2"]
+
+        likelihood = metric_v2.get(
+            "exploitabilityScore",
+            likelihood,
+        )
+        impact = metric_v2.get(
+            "impactScore",
+            impact,
+        )
+
+    # CVSS v3
+    # This intentionally comes after v2 so v3 takes priority.
+    if "baseMetricV3" in legacy_impact:
+        metric_v3 = legacy_impact["baseMetricV3"]
+
+        likelihood = metric_v3.get(
+            "exploitabilityScore",
+            likelihood,
+        )
+        impact = metric_v3.get(
+            "impactScore",
+            impact,
+        )
+
+    return likelihood, impact
+
 
 def get_vulns_by_hostid(devid,devices):
     cve_list=[]
@@ -51,27 +130,131 @@ def get_gain_privilege(isroot, isuser, req_privilege):
         return "USER"
     else:
         return "ROOT"
-def retrieve_privileges(vulnID,vulnerabilities):
-    for vuln in vulnerabilities:
-        if vuln["id"] == vulnID:
-            if "cvssMetricV2" in vuln["metrics"]:
-                metricV2 = vuln["metrics"]["cvssMetricV2"][0]
-                metricCvssV2 = metricV2["cvssData"]
-                
-                priv_required = get_req_privilege(metricCvssV2["authentication"])
-                priv_gained = get_gain_privilege(metricV2["obtainAllPrivilege"],metricV2["obtainUserPrivilege"],metricCvssV2["authentication"])
-                return vuln,priv_required,priv_gained
-            elif "cvssMetricV30" in vuln["metrics"] or "cvssMetricV31" in vuln["metrics"]: 
-                if "cvssMetricV30" in vuln["metrics"]: metricV3 = vuln["metrics"]["cvssMetricV30"][0]
-                else: metricV3 = vuln["metrics"]["cvssMetricV31"][0]
-                metricCvssV3 = metricV3["cvssData"]
+def retrieve_privileges(vulnID, vulnerabilities):
+    """
+    Supports:
 
-                priv_required = get_req_privilege(metricCvssV3["privilegesRequired"])
-                priv_gained = get_gain_privilege(metricCvssV3["scope"],metricCvssV3["scope"],metricCvssV3["privilegesRequired"])
-                return vuln,priv_required,priv_gained
-            else:
-                return vuln,"NONE","NONE"
-    return vulnID,"NONE","NONE"
+    NVD 2.0:
+        vulnerabilities[].cve
+
+    NVD 1.1:
+        CVE_Items[]
+    """
+
+    for vuln in vulnerabilities:
+        # NVD 2.0 uses vuln["cve"]
+        # NVD 1.1 stores the CVE directly in the item
+        cve = vuln.get("cve", vuln)
+
+        # Get the CVE ID from either format
+        current_id = (
+            cve.get("id")
+            or cve.get("CVE_data_meta", {}).get("ID")
+        )
+
+        if current_id != vulnID:
+            continue
+
+        # ---------------------------------------------------------
+        # NVD 2.0 metrics
+        # ---------------------------------------------------------
+        metrics = cve.get("metrics", {})
+
+        # NVD 2.0 CVSS v2
+        if "cvssMetricV2" in metrics:
+            metric_v2 = metrics["cvssMetricV2"][0]
+            cvss_v2 = metric_v2.get("cvssData", {})
+
+            authentication = cvss_v2.get("authentication", "NONE")
+
+            priv_required = get_req_privilege(authentication)
+
+            priv_gained = get_gain_privilege(
+                metric_v2.get("obtainAllPrivilege", False),
+                metric_v2.get("obtainUserPrivilege", False),
+                authentication,
+            )
+
+            return vuln, priv_required, priv_gained
+
+        # NVD 2.0 CVSS v3.0 or v3.1
+        metric_v3 = None
+
+        if "cvssMetricV31" in metrics:
+            metric_v3 = metrics["cvssMetricV31"][0]
+        elif "cvssMetricV30" in metrics:
+            metric_v3 = metrics["cvssMetricV30"][0]
+
+        if metric_v3:
+            cvss_v3 = metric_v3.get("cvssData", {})
+
+            privileges_required = cvss_v3.get(
+                "privilegesRequired",
+                "NONE",
+            )
+            scope = cvss_v3.get("scope", "UNCHANGED")
+
+            priv_required = get_req_privilege(privileges_required)
+
+            priv_gained = get_gain_privilege(
+                scope,
+                scope,
+                privileges_required,
+            )
+
+            return vuln, priv_required, priv_gained
+
+        # ---------------------------------------------------------
+        # NVD 1.1 metrics
+        # ---------------------------------------------------------
+        impact = vuln.get("impact", {})
+
+        # NVD 1.1 CVSS v2:
+        # vuln["impact"]["baseMetricV2"]
+        if "baseMetricV2" in impact:
+            metric_v2 = impact["baseMetricV2"]
+            cvss_v2 = metric_v2.get("cvssV2", {})
+
+            authentication = cvss_v2.get("authentication", "NONE")
+
+            priv_required = get_req_privilege(authentication)
+
+            priv_gained = get_gain_privilege(
+                metric_v2.get("obtainAllPrivilege", False),
+                metric_v2.get("obtainUserPrivilege", False),
+                authentication,
+            )
+
+            return vuln, priv_required, priv_gained
+
+        # NVD 1.1 CVSS v3:
+        # vuln["impact"]["baseMetricV3"]
+        if "baseMetricV3" in impact:
+            metric_v3 = impact["baseMetricV3"]
+            cvss_v3 = metric_v3.get("cvssV3", {})
+
+            privileges_required = cvss_v3.get(
+                "privilegesRequired",
+                "NONE",
+            )
+            scope = cvss_v3.get("scope", "UNCHANGED")
+
+            priv_required = get_req_privilege(privileges_required)
+
+            priv_gained = get_gain_privilege(
+                scope,
+                scope,
+                privileges_required,
+            )
+
+            return vuln, priv_required, priv_gained
+
+        # The CVE exists but has no supported CVSS metrics
+        return vuln, "NONE", "NONE"
+
+    # The CVE ID was not found
+    return vulnID, "NONE", "NONE"
+
 
 def generate_ag_model(network_file, writeonfile=False):
     with open(network_file) as nf:

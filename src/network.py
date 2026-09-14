@@ -79,7 +79,7 @@ def load_year(year):
     return records_by_id
 
 
-def read_cve_ids(input_files):
+def read_cve_ids(input_files: list[str]):
     """Yield normalized CVE IDs from text files."""
     for input_file in input_files:
         with open(input_file, encoding="utf-8") as f:
@@ -164,9 +164,9 @@ def getCweMitigation(cve_record) -> list[dict[str, str]]:
 	# CSV: 22 -> "22"
 	df["_normalized_cwe"] = df["CWE-ID"].map(normalize_cwe)
 
-	print(f"CWEs for {cveid}: {cwes}")
-	print(f"Normalized CWEs: {normalized_cwes}")
-	print(f"CSV CWE IDs: {df['_normalized_cwe'].unique()}")
+	# print(f"CWEs for {cveid}: {cwes}")
+	# print(f"Normalized CWEs: {normalized_cwes}")
+	# print(f"CSV CWE IDs: {df['_normalized_cwe'].unique()}")
 
 	mitigations = df[
 		df["_normalized_cwe"].isin(normalized_cwes)
@@ -183,7 +183,7 @@ def getCweMitigation(cve_record) -> list[dict[str, str]]:
 		if not isinstance(record["strategy"], str):
 			record["strategy"] = "Unknown"
 
-	print(f"Mitigations for {cveid}:", records)
+	# print(f"Mitigations for {cveid}:", records)
 
 	return records
 
@@ -228,8 +228,8 @@ def generate_vuln_files(cve_files: list[str]|None):
 		outfile.write(json_data)
 
 	### Charging stations
-	vuln_charging=[]
-	vulnid_charging=[]
+	vuln_charging=[] #vuln_vehicle
+	vulnid_charging=[] #vulnid_vehicle
 	cve_charging = nvdlib.searchCVE(keywordSearch='evlink v3.4.0.1')
 	for cve in cve_charging: 
 		vulnid_charging.append(cve.id)
@@ -240,10 +240,10 @@ def generate_vuln_files(cve_files: list[str]|None):
 					},default=lambda o: o.__dict__, indent=2)
 		outfile.write(json_data)
 
-	time.sleep(6)
+	# time.sleep(6)
 	### MQTT
-	vuln_mqtt=[]
-	vulnid_mqtt=[]
+	vuln_mqtt=[] #vuln_vehicle
+	vulnid_mqtt=[] #vulnid_vehicle
 	cve_mqtt = nvdlib.searchCVE(keywordSearch='mqtt')
 	for cve in cve_mqtt: 
 		vulnid_mqtt.append(cve.id)
@@ -254,16 +254,16 @@ def generate_vuln_files(cve_files: list[str]|None):
 					},default=lambda o: o.__dict__, indent=2)
 		outfile.write(json_data)
 
-	time.sleep(6)
+	# time.sleep(6)
 	### Redis
-	vuln_redis=[]
-	vulnid_redis=[]
+	vuln_redis=[] #vuln_vehicle
+	vulnid_redis=[] #vulnid_vehicle
 	cve_redis = nvdlib.searchCVE(keywordSearch='redis 6.2.6')
 	for cve in cve_redis: 
 		vulnid_redis.append(cve.id)
 		vuln_redis.append(cve)
 
-	time.sleep(6)
+	# time.sleep(6)
 	### Django
 	vuln_django=[]
 	vulnid_django=[]
@@ -277,29 +277,29 @@ def generate_vuln_files(cve_files: list[str]|None):
 					},default=lambda o: o.__dict__, indent=2)
 		outfile.write(json_data)
 
-	time.sleep(6)
+	# time.sleep(6)
 	### Postgres
-	vuln_postgres=[]
-	vulnid_postgres=[]
+	vuln_postgres=[] #vuln_vehicle
+	vulnid_postgres=[] # vulnid_vehicle
 	cve_postgres = nvdlib.searchCVE(keywordSearch='postgresql 15.5')
 	for cve in cve_postgres: 
 		vulnid_postgres.append(cve.id)
 		vuln_postgres.append(cve)
 	
-	time.sleep(6)
+	# time.sleep(6)
 	### Elasticsearch
 	vuln_elastic=[]
 	vulnid_elastic=[]
-	cve_elastic = nvdlib.searchCVE(keywordSearch='elasticsearch 7.17')
+	cve_elastic = [] # nvdlib.searchCVE(keywordSearch='elasticsearch 7.17')
 	for cve in cve_elastic: 
 		vulnid_elastic.append(cve.id)
 		vuln_elastic.append(cve)
 	
-	time.sleep(6)
+	# time.sleep(6)
 	### filebrowser
 	vuln_file=[]
 	vulnid_file=[]
-	cve_file = nvdlib.searchCVE(keywordSearch='filebrowser 2.22')
+	cve_file = [] # nvdlib.searchCVE(keywordSearch='filebrowser 2.22')
 	for cve in cve_file: 
 		vulnid_file.append(cve.id)
 		vuln_file.append(cve)
@@ -315,7 +315,7 @@ def build_v2x_net(num_charging=1,num_management=1,num_storage=1,num_vehicle=1):
 	vulnid_mqtt=[]
 	mitig_mqtt=[]
 	with open("data/NIST/broker.json") as f: vuln_broker = json.load(f)["vulnerabilities"]
-	vuln_broker_filter = random.sample(vuln_broker,10)
+	vuln_broker_filter = [] # random.sample(vuln_broker,10)
 	for v in vuln_broker_filter:
 		vulnid_mqtt.append(v["id"])
 		mitig_mqtt+=getCweMitigation(v)

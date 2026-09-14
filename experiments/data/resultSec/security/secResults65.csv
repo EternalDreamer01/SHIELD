@@ -1,4 +1,4 @@
 id,sender,count,average_response_time
-management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,management/a0838a0a-91f5-4bed-a2d9-afe3c9c22d2b,1,2
-management/5fc9d459-5e10-4671-b845-95a21f6b2ec4,management/a0838a0a-91f5-4bed-a2d9-afe3c9c22d2b,2,3
-charging/8516210e-556a-4885-a980-e7bf9eb12b2f,management/a0838a0a-91f5-4bed-a2d9-afe3c9c22d2b,1,1
+management/4701f8a3-a15c-4bda-afcc-a1eff02403c5,management/b577281e-ab81-497b-a488-449b980dd18f,1,4
+management/e73673fe-4af4-4bf2-b78d-76766052f507,management/b577281e-ab81-497b-a488-449b980dd18f,2,6
+management/3410a7fa-45d4-4b4e-b46b-ff6ca59b6abf,management/b577281e-ab81-497b-a488-449b980dd18f,1,4

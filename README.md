@@ -17,8 +17,8 @@ We highly suggest using **Ubuntu** to facilitate reproducibility.
 
 ## Installation Instruction
 
-
-### 0. NIST data download
+### 0. Setup for custom CVEs
+#### 1. NIST data download
 __[Also accessible here](https://cwe.mitre.org/data/downloads.html):__
 ```sh
 mkdir -p data/NIST/
@@ -30,6 +30,17 @@ zcat {software,hardware,research}.csv.zip > cwe.csv
 python3 ./import-cwe-mitigations.py
 ```
 
+#### 2. Install CVE-Binary-Tool
+```sh
+pip3 install cve-bin-tool
+cve-bin-tool # Download database
+```
+
+#### 3. Generate network
+```sh
+python3 ./src/network.py --generate-vuln-files [CVES_FILE...] # Generate vulnerability files, using CVEs list
+python3 ./src/network.py # Generate network
+```
 
 
 ### 1. Docker Network instantiation

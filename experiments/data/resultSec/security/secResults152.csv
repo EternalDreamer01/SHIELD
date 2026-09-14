@@ -1,14 +1,2 @@
 id,sender,count,average_response_time
-management/ea225295-fa2a-4a64-a908-229f0a69f4e7,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,2
-management/a0838a0a-91f5-4bed-a2d9-afe3c9c22d2b,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,2
-management/cc77e858-ddc7-4f60-af24-934044fa2741,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1
-management/f9e2bb9e-64ca-4d3e-8229-18c36c4aed93,vehicle/8b7facec-b904-4145-983d-1a483626c205,2,3
-management/5b029320-5cb4-4817-a816-bfb605e429f9,vehicle/8b7facec-b904-4145-983d-1a483626c205,3,2
-management/f8f60ea3-b305-4916-9c05-7abc49a5e3d2,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,12
-management/5fc9d459-5e10-4671-b845-95a21f6b2ec4,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1
-vehicle/a0d6428a-18d8-4e9d-9fbf-1d5cdb0dbc2c,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,2
-vehicle/cc05a02a-5f64-4991-9107-45a5de037437,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1
-vehicle/6f01bc53-8725-40b8-a73c-ff74d1d22d7b,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1
-vehicle/fe16bd22-b073-4e35-a2a9-7fcfee7c050f,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1
-vehicle/d8025198-1b7b-4eb2-8f0e-daa3b76479df,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,11
-vehicle/719fc4fc-3901-469e-aedb-6363c9f12284,vehicle/8b7facec-b904-4145-983d-1a483626c205,1,1
+management/b577281e-ab81-497b-a488-449b980dd18f,vehicle/098392c8-0862-4300-bcfb-75656b28ae21,2,29
